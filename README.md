@@ -1,2 +1,2 @@
 # HMGB1_2022
-This is a repository for "Disruption of nucleolar phase separation is a frequent pathomechanism in genetic disease"
+This is a repository for "Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022"
