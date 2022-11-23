@@ -1,0 +1,71 @@
+---
+title: "Ext Figure 8 D"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+###########################################################################################
+## This script contains the code to reproduce Ext Figure 8F-H                            ##
+## Mensah & Niskanen et al.                                                              ##
+## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
+## Author: Alexandre P Magalhaes                                                         ##
+###########################################################################################
+
+
+```{r}
+library("tidyverse")
+library("wordcloud")
+library("RColorBrewer")
+library("wordcloud2")
+library("tm")
+```
+
+```{r}
+listterms <- read_csv("listTerms.csv")
+SG_text <- listterms$stopgained
+SG_docs <- Corpus(VectorSource(SG_text))
+FS20aa_text <- listterms$D20aa
+FS20aa_docs <- Corpus(VectorSource(FS20aa_text))
+FS20aaR015_text <- listterms$D20aaFR015
+FS20aaR015_docs <- Corpus(VectorSource(FS20aaR015_text))
+```
+
+```{r}
+SG_dtm <- TermDocumentMatrix(SG_docs) 
+SG_matrix <- as.matrix(SG_dtm) 
+SG_words <- sort(rowSums(SG_matrix),decreasing=TRUE) 
+SG_df <- data.frame(word = names(SG_words),freq=SG_words)
+
+FS20aa_dtm <- TermDocumentMatrix(FS20aa_docs) 
+FS20aa_matrix <- as.matrix(FS20aa_dtm) 
+FS20aa_words <- sort(rowSums(FS20aa_matrix),decreasing=TRUE) 
+FS20aa_df <- data.frame(word = names(FS20aa_words),freq=FS20aa_words)
+FS20aaR015_dtm <- TermDocumentMatrix(FS20aaR015_docs)
+FS20aaR015_matrix <- as.matrix(FS20aaR015_dtm) 
+FS20aaR015_words <- sort(rowSums(FS20aaR015_matrix),decreasing=TRUE) 
+FS20aaR015_df <- data.frame(word = names(FS20aaR015_words),freq=FS20aaR015_words)
+```
+
+```{r}
+set.seed(1234) # for reproducibility 
+p1 <- wordcloud(words = FS20aa_df$word, freq = FS20aa_df$freq, min.freq = 5,
+          max.words=50, random.order=TRUE, rot.per=0.3,
+          colors=brewer.pal(8, "Dark2"))
+p1
+```
+```{r}
+set.seed(1234) # for reproducibility 
+p2 <- wordcloud(words = FS20aaR015_df$word, freq = FS20aaR015_df$freq, min.freq = 1,
+          max.words=25, random.order=TRUE, rot.per=0.3,
+          colors=brewer.pal(8, "Dark2"))
+p2
+```
+```{r}
+set.seed(1234) # for reproducibility 
+p2 <- wordcloud(words = SG_df$word, freq = SG_df$freq, min.freq = 1,
+          max.words=25, random.order=TRUE, rot.per=0.3,
+          colors=brewer.pal(8, "Dark2"))
+p2
+```
+

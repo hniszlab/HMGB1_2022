@@ -1,0 +1,30 @@
+---
+  title: "Figure 4 C"
+output: html_notebook
+---
+###########################################################################################
+## This script contains the code Figure 4 C                                              ##
+## Mensah & Niskanen et al.                                                              ##
+## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
+## Author: Alexandre P Magalhaes                                                         ##
+###########################################################################################
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library("tidyverse")
+library("ggplotgui")
+#library("polyPK")
+library("Hmisc")
+library("corrplot")
+```
+```{r}
+df_s <- read.csv("IDRTarget_small.csv", row.names = 1)
+```
+```{r}
+resIDR_s <- rcorr(as.matrix(df_s))
+```
+```{r}
+corrplot(resPFS_s$r, type="upper", order="alphabet", 
+         p.mat = resPFS_s$P, sig.level = 0.5, insig = "blank", tl.cex = 1)
+```
+

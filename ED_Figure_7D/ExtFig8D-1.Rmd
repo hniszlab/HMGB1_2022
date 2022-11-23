@@ -1,0 +1,60 @@
+---
+  title: "Ext Figure 8 D"
+output: html_notebook
+---
+###########################################################################################
+## This script contains the code to reproduce Ext Figure 8D                              ##
+## Mensah & Niskanen et al.                                                              ##
+## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
+## Author: Alexandre P Magalhaes                                                         ##
+###########################################################################################
+
+
+
+```{r}
+library("tidyverse")
+library("gprofiler2")
+library("ggplot2")
+```
+```{r}
+GENESdf <- read_csv("GeneListGO.csv")
+```
+
+```{r}
+gostresSG <- gost(query = GENESdf$GenesSG, organism = "hsapiens")
+gostresFS <- gost(query = GENESdf$GenesFS, organism = "hsapiens")
+gostresARG <- gost(query = GENESdf$GenesARG, organism = "hsapiens")
+dfSG <- gostresSG[["result"]]
+dfFS <- gostresFS[["result"]]
+dfARG <- gostresARG[["result"]]
+write_csv(dfSG, "dfSG.csv")
+write_csv(dfFS, "dfFS.csv")
+write_csv(dfARG, "dfARG.csv")
+```
+```{r}
+gostres_linkSG <- gost(query = GENESdf$GenesSG, organism = "hsapiens", as_short_link = TRUE)
+gostres_linkSG
+gostres_linkFS <- gost(query = GENESdf$GenesFS, organism = "hsapiens", as_short_link = TRUE)
+gostres_linkFS
+gostres_linkARG <- gost(query = GENESdf$GenesARG, organism = "hsapiens", as_short_link = TRUE)
+gostres_linkARG
+```
+
+```{r}
+p <- gostplot(gostresSG, capped = F, interactive = F)
+p
+```
+```{r}
+p2 <- gostplot(gostresFS, capped = F, interactive = F)
+p2
+```
+```{r}
+p3 <- gostplot(gostresARG, capped = F, interactive = F)
+p3
+```
+#p_value
+```{r}
+ppFS <- publish_gostplot(p, highlight_terms= c("GO:0005515", "GO:0003677", "GO:0003676", "GO:0140110", "GO:0000976", "GO:0043232", "GO:0043228", "GO:0005634", "GO:0005654", "GO:0031981", "GO:0005694","GO:0071840", "GO:0016043", "GO:0045935", "GO:0048731", "GO:0007275", "GO:0051254", "GO:0032502", "KEGG:05200", "KEGG:05224", "KEGG:05165", "REAC:R-HSA-421270", "REAC:R-HSA-5663202", "REAC:R-HSA-112316", "WP:WP4262", "WP:WP2064", "WP:WP4823"),
+                       width = NA, height = NA, filename = "gProfileFS.pdf" )
+ppFS
+```

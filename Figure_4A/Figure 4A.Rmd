@@ -1,0 +1,79 @@
+---
+  title: "Figure 4 A"
+output: html_notebook
+---
+###########################################################################################
+## This script contains the code to reproduce Figure 4 A                                 ##
+## Mensah & Niskanen et al.                                                              ##
+## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
+## Author: Alexandre P Magalhaes                                                         ##
+###########################################################################################
+
+
+```{r}
+library(tidyverse)
+library(circlize)
+```
+```{r}
+StopGained <- read.csv("StopGained.csv")
+Frameshif <- read.csv("Frameshif.csv")
+pathogenic <- read.csv("pathogenic.csv")
+CADD <- read.csv("CADD.csv")
+genes <- read.csv("genes.csv")
+vestpval <- read.csv("vestpval.csv")
+VESTlog10 <- read.csv("VESTlog10.csv")
+chromosome_cytoband <- read.csv("chromosome_cytoband.csv")
+```
+
+```{r}
+PathogenicBed <- pathogenic %>% filter ( stack == "Pathogenic")
+LPathogenicBed <- pathogenic %>% filter ( stack == "Likely_pathogenic")
+listbed <- list(PathogenicBed, LPathogenicBed)
+```
+
+
+```{r fig.height=4, fig.width=4}
+circos.par("start.degree" = 90)
+circos.initializeWithIdeogram(plotType = NULL)
+circos.genomicLabels(genes, labels.column=4, side = "outside", cex = 0.8)
+circos.genomicIdeogram(track.height = mm_h(1),)
+# still work on the ideogram track
+#circos.track(track.index = get.current.track.index(), panel.fun = function(x, y) {
+#    circos.genomicAxis(h = "top")
+#})
+#circos.track(ylim = c(0, 1), track.height = 0.1)
+circos.track(track.index = get.current.track.index(), panel.fun = function(x, y) {
+    circos.genomicAxis(h = "bottom", direction = "inside")
+})
+#Frameshift
+circos.genomicTrack(Frameshif,
+                    panel.fun = function(region, value, ...) {
+                      circos.genomicLines(region, value, col = "blue", type = "h")
+                    })
+
+#StopGained
+circos.genomicTrack(StopGained,
+                    panel.fun = function(region, value, ...) {
+                      circos.genomicRect(region, value, ytop = 1, ybottom = 0)
+                    })
+
+                    
+#Pathogenic
+circos.genomicTrack(listbed, stack = TRUE,
+    panel.fun = function(region, value, ...) {
+    i = getI(...)
+    circos.genomicPoints(region, value, pch = 16, col = i, ...)
+    cell.xlim = get.cell.meta.data("cell.xlim")
+    circos.lines(cell.xlim, c(i, i), lty = 2, col = "#00000040")
+})
+#CADD score
+
+circos.genomicTrack(CADD,
+                    panel.fun = function(region, value, ...) {
+                      circos.genomicLines(region, value, type = "h", ...)
+                    })
+
+```
+
+
+

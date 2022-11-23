@@ -1,0 +1,87 @@
+---
+  title: "Figure 4 A"
+output: html_notebook
+---
+###########################################################################################
+## This script contains the code to reproduce to get coordinates of genes                ##
+## Mensah & Niskanen et al.                                                              ##
+## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
+## Author: Alexandre P Magalhaes                                                         ##
+###########################################################################################
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library("tidyverse")
+library("ggplotgui")
+library("plotly")
+library("gridExtra")
+library("RColorBrewer")
+library("ggpubr")
+library("gghighlight")
+library("ggrepel")
+library("cowplot")
+library("viridis")
+theme_set(theme_bw())
+stringsAsFactors = FALSE
+```
+```{r}
+dfFSVAR <- read_csv('MasterTable_wNMD_wVariantDisease_wRK_WHidrophobic_wNLS_wTransmembrane_220608_Full.csv')
+dfFSVAR$DELTA_FullLength <- -1*(dfFSVAR$DELTA_FullLength)
+dfFSVAR$DELTA_IDRLength <- -1*(dfFSVAR$DELTA_IDRLength)
+dfFSVAR$vestlog10pv <- -log10(dfFSVAR$VEST_pvalue)
+dfFS <- dfFSVAR %>% filter (seqTypeExp == "Frameshift")
+dfFS <- dfFS[order(dfFS$Pathogenic,decreasing=F),]
+dfFS2 <- dfFSVAR %>% filter (seqTypeExp == "Frameshift") %>% filter(PFSseqLength >= 20)
+dfFS3 <- dfFSVAR %>% filter (seqTypeExp == "Frameshift") %>% filter(PFSseqLength >= 20) %>% filter(PFSfrac_R >= 0.15) 
+
+dfFS2 <- dfFS2[order(dfFS2$Pathogenic,decreasing=F),]
+dfFSH <- dfFSVAR%>% filter (Target == TRUE)
+
+```
+```{r}
+dfFS$PFSfrac_K <- dfFS$PFSfrac_RK - dfFS$PFSfrac_R
+dfFS2$PFSfrac_K <- dfFS2$PFSfrac_RK - dfFS2$PFSfrac_R
+dfFS2$WTPFSfrac_K <- dfFS2$WTPFSfrac_RK - dfFS2$WTPFSfrac_R
+dfFSH$PFSfrac_K <- dfFSH$PFSfrac_RK - dfFSH$PFSfrac_R
+dfFSH$WTPFSfrac_K <- dfFSH$WTPFSfrac_RK - dfFSH$WTPFSfrac_R
+
+dfFSH$PFSfrac_K[dfFSH$PFSfrac_K<0] <- 0
+dfFSH$WTPFSfrac_K[dfFSH$WTPFSfrac_K<0] <- 0
+
+dfFS$PFSfrac_K[dfFS$PFSfrac_K<0] <- 0
+
+dfFS2$PFSfrac_K[dfFS2$PFSfrac_K<0] <- 0
+dfFS2$WTPFSfrac_K[dfFS2$WTPFSfrac_K<0] <- 0
+
+```
+```{r}
+pmain <- ggscatter(dfFS, x = "PFSseqLength", y = "PFSfrac_R",
+           size = 0.5,
+           color = "Pathogenic",
+           ggtheme = theme_bw(),
+           palette = c("gray20", "#33b3cc"),
+           xlab = "Length of Post-frameshift aa",
+           ylab = "Mut Fraction of Arginine") +
+  geom_point(data = dfFSH, color = "coral1", size = 2) +
+    xlim(0, 400) + 
+  ylim(0, 0.6) +
+  geom_label_repel(data = dfFSH, 
+    aes(label = gene_symbol),
+    size = 3.5,
+    box.padding = 1,
+    min.segment.length = 0,
+    max.overlaps = Inf,
+    color = "coral1",
+    show.legend = F,
+    show.legend.text = F) +
+  theme(aspect.ratio=1,
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor.y = element_blank()
+      ) +
+  gghighlight(((PFSfrac_R) >= 0.15) & ((PFSseqLength) > 20)  )
+pmain
+ggsave(pmain, file = "Length vs Fraction of R.pdf", width = 5, height = 5)
+```
+
