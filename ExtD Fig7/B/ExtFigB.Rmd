@@ -1,0 +1,79 @@
+---
+  title: "Ext Figure 7 B"
+output: html_notebook
+---
+###########################################################################################
+## This script contains the code to reproduce Ext Figure 8 B                             ##
+## Mensah & Niskanen et al.                                                              ##
+## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
+## Author: Alexandre P Magalhaes                                                         ##
+###########################################################################################
+
+
+
+```{r}
+library("tidyverse")
+library("ggplotgui")
+library("plotly")
+library("gridExtra")
+library("ggpubr")
+library("RColorBrewer")
+library("scales")
+```
+
+```{r}
+PiechardDF <- read_csv("PiechardDF.csv")
+```
+```{r}
+PiechardDF$Mutation <- factor(PiechardDF$Mutation, levels = c("Missense variant","Others", "Synonymous variant", "Stop gained", "Frameshift variant", "Inframe deletion", "Inframe insertion", "Stop lost"))
+```
+
+```{r}
+# Compute percentages
+PiechardDF$fraction = PiechardDF$count / sum(PiechardDF$count)
+
+# Compute the cumulative percentages (top of each rectangle)
+PiechardDF$ymax = cumsum(PiechardDF$fraction)
+PiechardDF$ymin = c(0, head(PiechardDF$ymax, n=-1))
+```
+```{r}
+# Compute label position
+PiechardDF$percentage <- round(PiechardDF$count/sum(PiechardDF$count),4)*100
+PiechardDF$labelPosition <- (PiechardDF$ymax + PiechardDF$ymin)
+```
+```{r}
+PiechardDF$label <- paste0(PiechardDF$count, "\n (", label_percent(accuracy = 0.01)(PiechardDF$fraction), ")")
+```
+
+```{r}
+mypal = c( "#2c8bc8", "#cb5b96", "#d32575", "#b383b8", "#3b64a9", "#8bcc7e", "#f6bc63", "#7290c2")
+g <- ggplot(PiechardDF, aes(x =4, ymax=ymax, ymin=ymin, xmax=5, xmin=3, y = fraction, fill=Mutation, )) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=label), size=2, col = "white") +
+  coord_polar(theta="y",start=45,direction=1) +
+  scale_fill_manual(values = mypal)+
+  xlim(c(2, 6)) +
+  theme_void() +
+  theme(legend.position = "left")
+g
+```
+```{r}
+ PiechardDF2 <- read_csv("/Users/magalhae/Desktop/Figures_VARcatalog/PieChart/PiechardDF2.csv")
+```
+```{r}
+PiechardDF2$fraction = PiechardDF2$count / sum(PiechardDF2$count)
+PiechardDF2$ymax = cumsum(PiechardDF2$fraction)
+PiechardDF2$percentage <- round(PiechardDF2$count/sum(PiechardDF2$count),4)*100
+PiechardDF2$label <- paste0(PiechardDF2$count, "\n (", label_percent(accuracy = 0.01)(PiechardDF2$fraction), ")")
+```
+```{r}
+mypal = c("#2c8bc8", "#1e5e88","#b383b8")
+ggplot(PiechardDF2, aes(x =2, y =percentage, fill=Mutation, )) +
+  geom_bar(stat = "identity") +
+  geom_text(aes(label=label), size=4, col = "white") +
+  coord_polar(theta="y") +
+  scale_fill_manual(values = mypal)+
+  xlim(c(0, 2.5)) +
+  theme_void() +
+  theme(legend.position = "left")
+```

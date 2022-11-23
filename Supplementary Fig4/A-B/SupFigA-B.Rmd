@@ -1,0 +1,42 @@
+---
+title: "R Notebook"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+###########################################################################################
+## This script contains the code to reproduce Sup Figure 3A-B                            ##
+## Mensah & Niskanen et al.                                                              ##
+## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
+## Author: Alexandre P Magalhaes                                                         ##
+###########################################################################################
+
+```{r message=FALSE, warning=FALSE}
+
+library("tidyverse")
+library("ggplotgui")
+#library("polyPK")
+library("Hmisc")
+library("corrplot")
+```
+
+
+```{r}
+df <- read.csv("IDRTarget.csv", row.names = 1)
+df2 <- read.csv("PFSTarget.csv", row.names = 1)
+
+```
+
+```{r}
+resIDR <- cor(df)
+resPFS <- cor(df2)
+```
+```{r}
+corrplot(resPFS, type = "upper", order = "AOE", 
+         tl.col = "black", tl.cex = 1,  sig.level = 0.01)
+
+
+corrplot(resIDR, type = "upper", order = "AOE", 
+         tl.col = "black", tl.cex = 1,  sig.level = 0.01)
+```

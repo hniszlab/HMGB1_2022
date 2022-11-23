@@ -1,0 +1,62 @@
+﻿order,source,term_name,term_id,negative_log10_of_adjusted_p_value,Type
+1,GO:MF,Protein binding,GO:0005515,27.4818535,Frameshift
+2,GO:MF,DNA binding,GO:0003677,23.93200056,Frameshift
+3,GO:MF,Nucleic acid binding,GO:0003676,14.61094319,Frameshift
+4,GO:MF,Transcription regulator activity,GO:0140110,13.73166459,Frameshift
+5,GO:MF,Sequence-specific DNA binding,GO:0043565,12.23910666,Frameshift
+6,GO:MF,Transcription regulatory region nucleic acid binding,GO:0001067,10.79525733,Frameshift
+7,GO:MF,Enzyme binding,GO:0019899,10.71898604,Frameshift
+8,GO:MF,Heterocyclic compound binding,GO:1901363,10.70694041,Frameshift
+9,GO:MF,Organic cyclic compound binding,GO:0097159,10.69931419,Frameshift
+10,GO:MF,Transcription cis-regulatory region binding,GO:0000976,10.66292656,Frameshift
+11,GO:CC,Intracellular non-membrane-bounded organelle,GO:0043232,39.08326437,Frameshift
+12,GO:CC,Non-membrane-bounded organelle,GO:0043228,38.96969483,Frameshift
+13,GO:CC,Nucleus,GO:0005634,37.13869822,Frameshift
+14,GO:CC,Nucleoplasm,GO:0005654,33.08743726,Frameshift
+15,GO:CC,Nuclear lumen,GO:0031981,29.99726236,Frameshift
+16,GO:BP,Cellular component organization or biogenesis,GO:0071840,35.75236037,Frameshift
+17,GO:BP,Positive regulation of nucleobase-containing compound metabolic process,GO:0045935,28.54790718,Frameshift
+18,GO:BP,System development,GO:0048731,27.70969041,Frameshift
+19,GO:BP,Multicellular organism development,GO:0007275,27.60890715,Frameshift
+20,GO:BP,Positive regulation of RNA metabolic process,GO:0051254,27.24482853,Frameshift
+21,GO:BP,Developmental process,GO:0032502,27.17473811,Frameshift
+22,GO:BP,Cellular component organization or biogenesis,GO:0071840,28.2926499,StopGained
+23,GO:BP,Cellular component organization,GO:0016043,27.01552488,StopGained
+24,GO:BP,Nucleic acid metabolic process,GO:0090304,21.56202466,StopGained
+25,GO:BP,Anatomical structure development,GO:0048856,19.83202003,StopGained
+26,GO:BP,Developmental process,GO:0032502,19.17936918,StopGained
+27,GO:BP,Microtubule-based process,GO:0007017,18.47009317,StopGained
+28,GO:BP,Nervous system development,GO:0007399,18.44646341,StopGained
+29,GO:BP,Transcription by rna polymerase ii,GO:0006366,17.95363097,StopGained
+30,GO:BP,Rna metabolic process,GO:0016070,17.78401413,StopGained
+31,GO:BP,Multicellular organism development,GO:0007275,17.4946034,StopGained
+32,GO:CC,Non-membrane-bounded organelle,GO:0043228,37.28470398,StopGained
+33,GO:CC,Intracellular non-membrane-bounded organelle,GO:0043232,37.05438329,StopGained
+34,GO:CC,Nucleus,GO:0005634,32.54365277,StopGained
+35,GO:CC,Nucleoplasm,GO:0005654,30.50911501,StopGained
+36,GO:CC,Nuclear lumen,GO:0031981,29.82390977,StopGained
+37,GO:MF,Protein binding,GO:0005515,25.13429519,StopGained
+38,GO:MF,Dna binding,GO:0003677,19.320897,StopGained
+39,GO:MF,Nucleic acid binding,GO:0003676,13.59760712,StopGained
+40,GO:MF,Binding,GO:0005488,13.50681731,StopGained
+41,GO:MF,Cytoskeletal protein binding,GO:0008092,12.13467268,StopGained
+42,GO:BP,Regulation of transcription by rna polymerase ii,GO:0006357,8.945393526,ARGrich
+43,GO:BP,Animal organ morphogenesis,GO:0009887,8.626178427,ARGrich
+44,GO:BP,Positive regulation of nucleobase-containing compound metabolic process,GO:0045935,8.322641574,ARGrich
+45,GO:BP,Nervous system development,GO:0007399,8.259600685,ARGrich
+46,GO:BP,Positive regulation of nucleic acid-templated transcription,GO:1903508,8.069892483,ARGrich
+47,GO:BP,"Positive regulation of transcription, dna-templated",GO:0045893,8.069892483,ARGrich
+48,GO:BP,Positive regulation of rna biosynthetic process,GO:1902680,8.056688173,ARGrich
+49,GO:BP,Positive regulation of rna metabolic process,GO:0051254,7.851164272,ARGrich
+50,GO:BP,Anterior/posterior pattern specification,GO:0009952,7.729654559,ARGrich
+51,GO:BP,Positive regulation of cellular metabolic process,GO:0031325,7.697471548,ARGrich
+52,GO:CC,Chromosome,GO:0005694,9.198612736,ARGrich
+53,GO:CC,Chromatin,GO:0000785,6.449166859,ARGrich
+54,GO:CC,Nucleoplasm,GO:0005654,5.79689944,ARGrich
+55,GO:CC,Nucleus,GO:0005634,4.569805334,ARGrich
+56,GO:CC,Intracellular non-membrane-bounded organelle,GO:0043232,4.564734673,ARGrich
+57,GO:MF,Dna binding,GO:0003677,7.951019593,ARGrich
+58,GO:MF,Transcription regulator activity,GO:0140110,7.523823847,ARGrich
+59,GO:MF,Sequence-specific dna binding,GO:0043565,7.211625942,ARGrich
+60,GO:MF,Sequence-specific double-stranded dna binding,GO:1990837,6.813118237,ARGrich
+61,GO:MF,Rna polymerase ii cis-regulatory region sequence-specific dna binding,GO:0000978,6.60027849,ARGrich
