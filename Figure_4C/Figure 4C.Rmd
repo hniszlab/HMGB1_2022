@@ -2,12 +2,12 @@
   title: "Figure 4 C"
 output: html_notebook
 ---
-###########################################################################################
-## This script contains the code Figure 4 C                                              ##
-## Mensah & Niskanen et al.                                                              ##
-## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
-## Author: Alexandre P Magalhaes                                                         ##
-###########################################################################################
+####################################################################################################
+## This script contains the code Figure 4 C                                                       ##
+## Mensah & Niskanen et al.                                                                       ##
+## Aberrant phase separation and nucleolar dysfunction can underlie rare genetic diseases 2023    ##
+## Author: Alexandre P Magalhaes                                                                  ##
+####################################################################################################
 
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}

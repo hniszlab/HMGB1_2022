@@ -2,12 +2,12 @@
   title: "Ext Figure 8 D"
 output: html_notebook
 ---
-###########################################################################################
-## This script contains the code to reproduce Ext Figure 8D                              ##
-## Mensah & Niskanen et al.                                                              ##
-## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
-## Author: Alexandre P Magalhaes                                                         ##
-###########################################################################################
+####################################################################################################
+## This script contains the code to reproduce Ext Figure 8D                                       ##
+## Mensah & Niskanen et al.                                                                       ##
+## Aberrant phase separation and nucleolar dysfunction can underlie rare genetic diseases 2023    ##
+## Author: Alexandre P Magalhaes                                                                  ##
+####################################################################################################
 
 
 

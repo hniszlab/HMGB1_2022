@@ -1,9 +1,9 @@
-###########################################################################################
-## This script contains the code to reproduce plots in Ext Fig 3B                        ##
-## Mensah & Niskanen et al.                                                              ##
-## Aberrant phase separation and nucleolar dysfunction in human genetic disease 2022     ##
-## Author: Alexandre P Magalhaes                                                         ##
-###########################################################################################
+####################################################################################################
+## This script contains the code to reproduce plots in Ext Fig 3B                                 ##
+## Mensah & Niskanen et al.                                                                       ##
+## Aberrant phase separation and nucleolar dysfunction can underlie rare genetic diseases 2023    ##
+## Author: Alexandre P Magalhaes                                                                  ##
+####################################################################################################
 
 import warnings
 import re
